@@ -29,6 +29,8 @@ Users should be able to:
 
 ![filled](images/calc-fill.jpeg)
 
+![mobile](images/calc-mobile.jpeg)
+
 ### Links
 
 - Solution URL: [Click Here](https://www.frontendmentor.io/solutions/mobile-first-using-react-and-sass-IqwJTsgGp)
