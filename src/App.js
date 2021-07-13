@@ -145,7 +145,7 @@ function App() {
       <div className='container'>
         <div className='input-section'>
           <div className='input-forms'>
-            <form action='' id='billForm' onSubmit={handleSubmit}>
+            <form action='#' id='billForm' onSubmit={handleSubmit}>
               <label htmlFor='bill'>Bill</label>
               <input
                 id='bill'
@@ -165,7 +165,7 @@ function App() {
           </div>
 
           <div className='input-forms'>
-            <form action='' id='percentForm' onSubmit={handleSubmit}>
+            <form action='#' id='percentForm' onSubmit={handleSubmit}>
               <label>Select Tip %</label>
               <div className='button-group'>
                 <button
@@ -218,7 +218,7 @@ function App() {
             </form>
           </div>
           <div className='input-forms'>
-            <form action='' id='peopleForm' onSubmit={handleSubmit}>
+            <form action='#' id='peopleForm' onSubmit={handleSubmit}>
               <label htmlFor='people'>Number of People</label>
               <input
                 id='people'
@@ -242,13 +242,13 @@ function App() {
           <div className='amount'>
             <div className='tip-info'>
               <span>
-                Tip Amount <br /> <p>/ person</p>
+                Tip Amount <br /> <strong>/ person</strong>
               </span>
               <h3>{`$${values.tip}`}</h3>
             </div>
             <div className='tip-info'>
               <span>
-                Total <br /> <p>/ person</p>
+                Total <br /> <strong>/ person</strong>
               </span>
               <h3>{`$${values.total}`}</h3>
             </div>
