@@ -12,6 +12,8 @@ function App() {
     disabled: true,
   });
 
+  const [alert, setAlert] = useState('');
+
   const handleChange = (e) => {
     if (isNaN(e.target.value)) {
       document.getElementById(`${e.target.id}Form`).reset();
@@ -61,6 +63,14 @@ function App() {
       let tempTip = (percent / 100) * bill;
       let tip = (tempTip / parseInt(e.target.value)).toFixed(2);
       let total = ((bill + tempTip) / parseInt(e.target.value)).toFixed(2);
+
+      if (e.target.value > '0') {
+        document.getElementById('people').classList.remove('invalid');
+        setAlert('');
+      } else {
+        document.getElementById('people').classList.add('invalid');
+        setAlert(`Can't be zero`);
+      }
 
       setValues({
         ...values,
@@ -215,8 +225,8 @@ function App() {
                 type='text'
                 placeholder='0'
                 onChange={handleChange}
-                onBlur={handleSubmit}
               />
+              <div className='alert'>{alert}</div>
               <i>
                 <svg xmlns='http://www.w3.org/2000/svg' width='13' height='16'>
                   <path
