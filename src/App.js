@@ -20,50 +20,37 @@ function App() {
       return setValues({ ...values, [e.target.id]: '0' });
     }
 
-    let bill = !isNaN(parseFloat(values.bill)) ? parseFloat(values.bill) : 0;
-    let percent = !isNaN(parseInt(values.percent))
-      ? parseInt(values.percent)
-      : 0;
-    let people = !isNaN(parseInt(values.people)) ? parseInt(values.people) : 0;
+    let bill =
+      e.target.id === 'bill' && !isNaN(parseFloat(e.target.value))
+        ? parseFloat(e.target.value)
+        : !isNaN(parseFloat(values.bill))
+        ? parseFloat(values.bill)
+        : 0;
+    let percent =
+      e.target.id === 'percent' && !isNaN(parseInt(e.target.value))
+        ? parseInt(e.target.value)
+        : !isNaN(parseInt(values.percent))
+        ? parseInt(values.percent)
+        : 0;
+    let people =
+      e.target.id === 'people' && !isNaN(parseInt(e.target.value))
+        ? parseInt(e.target.value)
+        : !isNaN(parseInt(values.people))
+        ? parseInt(values.people)
+        : 0;
 
-    if (e.target.id === 'bill') {
-      let tempTip = (percent / 100) * parseFloat(e.target.value);
-      let tempTotal = parseFloat(e.target.value) + tempTip;
-      let tip = (tempTip / people).toFixed(2);
-      let total = (tempTotal / people).toFixed(2);
-
-      setValues({
-        ...values,
-        [e.target.id]: e.target.value,
-        tip: !isNaN(tip) && isFinite(tip) ? tip : '0.00',
-        total: !isNaN(total) && isFinite(total) ? total : '0.00',
-        disabled: false,
-      });
-    }
+    let tempTip = (percent / 100) * bill;
+    let tempTotal = bill + tempTip;
+    let tip = (tempTip / people).toFixed(2);
+    let total = (tempTotal / people).toFixed(2);
 
     if (e.target.id === 'percent') {
-      let tempTip = (parseFloat(e.target.value) / 100) * bill;
-      let tip = (tempTip / people).toFixed(2);
-      let total = ((bill + tempTip) / people).toFixed(2);
-
       const buttons = document.getElementsByClassName('percent-btn');
 
       Array.from(buttons).map((button) => button.classList.remove('active'));
-
-      setValues({
-        ...values,
-        [e.target.id]: e.target.value,
-        tip: !isNaN(tip) && isFinite(tip) ? tip : '0.00',
-        total: !isNaN(total) && isFinite(total) ? total : '0.00',
-        disabled: false,
-      });
     }
 
     if (e.target.id === 'people') {
-      let tempTip = (percent / 100) * bill;
-      let tip = (tempTip / parseInt(e.target.value)).toFixed(2);
-      let total = ((bill + tempTip) / parseInt(e.target.value)).toFixed(2);
-
       if (e.target.value > '0') {
         document.getElementById('people').classList.remove('invalid');
         setAlert('');
@@ -71,15 +58,15 @@ function App() {
         document.getElementById('people').classList.add('invalid');
         setAlert(`Can't be zero`);
       }
-
-      setValues({
-        ...values,
-        [e.target.id]: e.target.value,
-        tip: !isNaN(tip) && isFinite(tip) ? tip : '0.00',
-        total: !isNaN(total) && isFinite(total) ? total : '0.00',
-        disabled: false,
-      });
     }
+
+    setValues({
+      ...values,
+      [e.target.id]: e.target.value,
+      tip: !isNaN(tip) && isFinite(tip) ? tip : '0.00',
+      total: !isNaN(total) && isFinite(total) ? total : '0.00',
+      disabled: false,
+    });
   };
 
   const handlePercentButton = (e) => {
